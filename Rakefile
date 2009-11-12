@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "Seamus"
+    gem.name = "seamus"
     gem.summary = %Q{Seamus is not an Irish monk}
     gem.description = %Q{Seamus is not an Irish monk. Instead, it inspects a file and returns whatever metadata it can determine.}
     gem.email = "scottburton11@gmail.com"
