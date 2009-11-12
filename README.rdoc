@@ -1,17 +1,35 @@
 = Seamus
 
-Description goes here.
+Seamus is not an Irish monk. Instead, it inspects a file and returns whatever metadata it can determine.
+
+== Usage
+
+Seamus is a mixin that provides a hash of metadata as an attribute.
+
+  class MyFileClass
+    include Seamus
+    attr_reader :path
+    
+    def initialize(path)
+      @path = path
+    end
+
+    def attributes
+      attributes_for(path)
+    end
+
+  end
+  
+  file = MyFileClass.new("/path/to/file.mov")
+  file.attributes
+  # => {"bitrate_units"=>"kb/s", "video_codec"=>"h264", "audio_channels_string"=>"stereo", "container"=>"mov,mp4,m4a,3gp,3g2,mj2", "audio?"=>true, "audio_channels"=>2, "video?"=>true, "audio_sample_rate"=>48000, "audio_codec"=>"mpeg4aac", "bitrate"=>2496, "audio_sample_units"=>"Hz", "height"=>360, "video_colorspace"=>"yuv420p", "duration"=>395700, "fps"=>"29.97", "path"=>nil, "width"=>640}
+
+Video and audio file attributes are inspected using the RVideo gem.
 
 == Note on Patches/Pull Requests
  
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+* I'd be very surprised if anyone wanted to do such a thing.
+
 
 == Copyright
 
