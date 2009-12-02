@@ -99,9 +99,8 @@ module Seamus
       begin
         processor.thumbnail
       rescue ThumbnailError => e
-        
+        return nil
       end
-      
     end
 
     private
