@@ -4,25 +4,29 @@ Seamus is not an Irish monk. Instead, it inspects a file and returns whatever me
 
 == Usage
 
-Seamus is a mixin that provides a hash of metadata as an attribute.
+Mix Seamus in to your class and get a hash of #file_attributes appropriate to the file type.
+Provide an instance of File, or any class that responds to #path, and include Seamus:
 
-  class MyFileClass
+  class MyClass
     include Seamus
-    attr_reader :path
+    attr_accessor :file
     
     def initialize(path)
-      @path = path
+      @path = File.open(path)
     end
-
-    def attributes
-      attributes_for(path)
-    end
-
   end
   
-  file = MyFileClass.new("/path/to/file.mov")
-  file.attributes
-  # => {"bitrate_units"=>"kb/s", "video_codec"=>"h264", "audio_channels_string"=>"stereo", "container"=>"mov,mp4,m4a,3gp,3g2,mj2", "audio?"=>true, "audio_channels"=>2, "video?"=>true, "audio_sample_rate"=>48000, "audio_codec"=>"mpeg4aac", "bitrate"=>2496, "audio_sample_units"=>"Hz", "height"=>360, "video_colorspace"=>"yuv420p", "duration"=>395700, "fps"=>"29.97", "path"=>nil, "width"=>640}
+  my_file = MyClass.new("path/to/file.mov")
+  my_file.file_attributes
+  
+  # => {"video_codec"=>"h264", "bitrate_units"=>"kb/s", "container"=>"mov,mp4,m4a,3gp,3g2,mj2", "audio_channels_string"=>"stereo", "audio?"=>true, "audio_channels"=>2, "video?"=>true, "audio_sample_rate"=>44100, "bitrate"=>346, "audio_codec"=>"mpeg4aac", "video_colorspace"=>"yuv420p", "height"=>576, "audio_sample_units"=>"Hz", "fps"=>"7.00", "duration"=>84000, "width"=>1024}
+  
+
+Generate thumbnails automatically:
+
+  my_file.thumbnail {|thumb| my_open_file_instance.write thumb.read }
+
+Files that probably can't generate thumbnails (audio, PDF, etc.) will raise ThumbnailError.
 
 Video and audio file attributes are inspected using the RVideo gem.
 
