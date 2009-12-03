@@ -9,6 +9,7 @@ require 'core/numeric'
 require 'seamus/inspector'
 require 'seamus/inspector/video_inspector'
 require 'seamus/inspector/audio_inspector'
+require 'seamus/inspector/image_inspector'
 require 'seamus/inspector/application_inspector'
 require 'seamus/processor'
 require 'seamus/processor/video_processor'
@@ -74,6 +75,10 @@ module Seamus
       Base64.encode64(md5.digest).strip
     end
 
+    def content_type
+       MimeTable.lookup_by_extension(extension).to_s
+    end
+
     def thumbnail(&block)
       @thumbnail ||= generate_thumbnail
       if block_given?
@@ -99,6 +104,8 @@ module Seamus
       begin
         processor.thumbnail
       rescue ThumbnailError => e
+        return nil
+      rescue NameError
         return nil
       end
     end
