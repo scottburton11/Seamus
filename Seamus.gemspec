@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{seamus}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Scott Burton"]
-  s.date = %q{2009-12-02}
+  s.date = %q{2009-12-03}
   s.description = %q{Seamus is not an Irish monk. Instead, it inspects a file and returns whatever metadata it can determine.}
   s.email = %q{scottburton11@gmail.com}
   s.extra_rdoc_files = [
@@ -30,12 +30,17 @@ Gem::Specification.new do |s|
      "lib/seamus/inspector.rb",
      "lib/seamus/inspector/application_inspector.rb",
      "lib/seamus/inspector/audio_inspector.rb",
+     "lib/seamus/inspector/image_inspector.rb",
      "lib/seamus/inspector/video_inspector.rb",
      "lib/seamus/processor.rb",
      "lib/seamus/processor/application_processor.rb",
      "lib/seamus/processor/audio_processor.rb",
+     "lib/seamus/processor/image_processor.rb",
      "lib/seamus/processor/video_processor.rb",
      "spec/Seamus_spec.rb",
+     "spec/lib/core/numeric_spec.rb",
+     "spec/lib/seamus/inspector/image_inspector_spec.rb",
+     "spec/lib/seamus/processor/image_processor_spec.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/scottburton11/Seamus}
@@ -44,7 +49,10 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Seamus is not an Irish monk}
   s.test_files = [
-    "spec/Seamus_spec.rb",
+    "spec/lib/core/numeric_spec.rb",
+     "spec/lib/seamus/inspector/image_inspector_spec.rb",
+     "spec/lib/seamus/processor/image_processor_spec.rb",
+     "spec/Seamus_spec.rb",
      "spec/spec_helper.rb"
   ]
 
