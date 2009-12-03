@@ -14,6 +14,7 @@ require 'seamus/inspector/application_inspector'
 require 'seamus/processor'
 require 'seamus/processor/video_processor'
 require 'seamus/processor/audio_processor'
+require 'seamus/processor/image_processor'
 require 'seamus/processor/application_processor'
 require 'mime_table'
 
