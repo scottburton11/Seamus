@@ -1,13 +1,6 @@
 module Seamus
   class VideoProcessor < Processor
     
-    attr_reader :file_attributes
-    
-    def initialize(file_path, file_attributes)
-      @file_attributes = file_attributes
-      @file = File.open(file_path, "r")
-    end
-    
     def thumbnail
       thumb = thumb_tempfile
       IO.popen("ffmpeg -y -ss #{start_time} -i '#{@file.path}' -t 00:00:01 -vcodec mjpeg -vframes 1 -an -f rawvideo -s #{dimensions_string} - 2> /dev/null") do |io|

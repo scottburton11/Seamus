@@ -1,25 +1,22 @@
 module Seamus
   class VideoInspector < Inspector
-
-    def initialize(file_path)
-      @file = File.new(file_path)
-    end
-
+    
     def stats
-      inspection_attributes(stat(@file))
+      inspection_attributes
     end
 
     private
 
-    def inspection_attributes(stat)
+    def inspection_attributes
       attr_hash = {}
       ["audio?", "audio_bitrate", "audio_channels", "audio_channels_string", "audio_codec", "audio_sample_rate", "audio_sample_units", "bitrate", "bitrate_units", "container", "duration", "fps", "height", "video?", "video_codec", "video_colorspace", "width"].each do |attribute|
-        attr_hash[attribute.to_s] = stat.send(attribute) if stat.respond_to?(attribute)
+        attr_hash[attribute.to_s] = media_stat.send(attribute) if media_stat.respond_to?(attribute)
       end
+      attr_hash.merge!("size" => file_stat.size)
       return attr_hash
     end
 
-    def stat(file)
+    def media_stat
       RVideo::Inspector.new(:raw_response => raw_response)
     end
 

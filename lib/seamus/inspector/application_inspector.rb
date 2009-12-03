@@ -1,22 +1,14 @@
 module Seamus
   class ApplicationInspector < Inspector
-
-    def initialize(file_path)
-      @file = File.new(file_path)
-    end
       
     def stats
-      inspection_attributes(stat(@file))
+      inspection_attributes
     end
     
     private
 
-    def stat(file)
-      File.stat(file.path)
-    end
-
-    def inspection_attributes(stat)
-      attr_hash = {"size" => stat.size}
+    def inspection_attributes
+      attr_hash = {"size" => file_stat.size}
       return attr_hash
     end
     
