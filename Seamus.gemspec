@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{seamus}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Scott Burton"]
-  s.date = %q{2009-12-03}
+  s.date = %q{2010-01-26}
   s.description = %q{Seamus is not an Irish monk. Instead, it inspects a file and returns whatever metadata it can determine.}
   s.email = %q{scottburton11@gmail.com}
   s.extra_rdoc_files = [
@@ -31,11 +31,13 @@ Gem::Specification.new do |s|
      "lib/seamus/inspector/application_inspector.rb",
      "lib/seamus/inspector/audio_inspector.rb",
      "lib/seamus/inspector/image_inspector.rb",
+     "lib/seamus/inspector/text_inspector.rb",
      "lib/seamus/inspector/video_inspector.rb",
      "lib/seamus/processor.rb",
      "lib/seamus/processor/application_processor.rb",
      "lib/seamus/processor/audio_processor.rb",
      "lib/seamus/processor/image_processor.rb",
+     "lib/seamus/processor/text_processor.rb",
      "lib/seamus/processor/video_processor.rb",
      "spec/Seamus_spec.rb",
      "spec/lib/core/numeric_spec.rb",
