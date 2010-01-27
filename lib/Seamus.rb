@@ -11,11 +11,13 @@ require 'seamus/inspector/video_inspector'
 require 'seamus/inspector/audio_inspector'
 require 'seamus/inspector/image_inspector'
 require 'seamus/inspector/application_inspector'
+require 'seamus/inspector/text_inspector'
 require 'seamus/processor'
 require 'seamus/processor/video_processor'
 require 'seamus/processor/audio_processor'
 require 'seamus/processor/image_processor'
 require 'seamus/processor/application_processor'
+require 'seamus/processor/text_processor'
 require 'mime_table'
 
 

@@ -1,6 +1,6 @@
 module Seamus
-  class ApplicationProcessor < Processor
-
+  class TextProcessor < Processor
+    
     def thumbnail
       raise ThumbnailError, "invalid type for thumbnail"
     end
