@@ -23,12 +23,12 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "features/Seamus.feature",
-     "features/step_definitions/Seamus_steps.rb",
+     "features/seamus.feature",
+     "features/step_definitions/seamus_steps.rb",
      "features/support/env.rb",
-     "lib/Seamus.rb",
      "lib/core/numeric.rb",
      "lib/mime_table.rb",
+     "lib/seamus.rb",
      "lib/seamus/inspector.rb",
      "lib/seamus/inspector/application_inspector.rb",
      "lib/seamus/inspector/audio_inspector.rb",
@@ -41,10 +41,11 @@ Gem::Specification.new do |s|
      "lib/seamus/processor/image_processor.rb",
      "lib/seamus/processor/text_processor.rb",
      "lib/seamus/processor/video_processor.rb",
-     "spec/Seamus_spec.rb",
+     "seamus.gemspec",
      "spec/lib/core/numeric_spec.rb",
      "spec/lib/seamus/inspector/image_inspector_spec.rb",
      "spec/lib/seamus/processor/image_processor_spec.rb",
+     "spec/seamus_spec.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/scottburton11/Seamus}
