@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://github.com/scottburton11/Seamus"
     gem.authors = ["Scott Burton"]
   end
-
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
