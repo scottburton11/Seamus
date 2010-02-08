@@ -1,5 +1,5 @@
 module Seamus
-  class VideoProcessor < Processor
+  module VideoProcessor# < Processor
     
     def thumbnail
       thumb = thumb_tempfile

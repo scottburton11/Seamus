@@ -1,9 +1,9 @@
 require 'devil'
 
 module Seamus
-  class ImageInspector < Inspector
-    def stats
-      inspection_attributes
+  module ImageInspector
+    def file_attributes
+      @file_attributes ||= inspection_attributes
     end
     
     private
@@ -13,12 +13,12 @@ module Seamus
       ["width", "height"].each do |attribute|
         attr_hash[attribute] ||= image.send(attribute.to_sym) if image.respond_to?(attribute)
       end
-      attr_hash.merge!("size" => file_stat.size)      
+      attr_hash.merge!("size" => self.size)      
       return attr_hash
     end
     
     def image
-      @image ||= Devil.load_image(file.path)
+      @image ||= Devil.load_image(self.path)
     end
     
   end

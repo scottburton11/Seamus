@@ -1,5 +1,5 @@
 module Seamus
-  class ApplicationInspector < Inspector
+  module ApplicationInspector
       
     def stats
       inspection_attributes

@@ -1,5 +1,5 @@
 module Seamus
-  class ImageProcessor < Processor
+  module ImageProcessor
     require 'devil'
     
     def thumbnail
