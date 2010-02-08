@@ -1,6 +1,5 @@
-require 'rvideo'
 require 'digest/md5'
-
+require 'open3'
 require 'tempfile'
 
 $LOAD_PATH << './lib'
