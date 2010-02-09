@@ -1,5 +1,7 @@
+require 'rvideo'
+
 module Seamus
-  module VideoInspector# < Inspector
+  module VideoInspector
     
     def file_attributes
       @file_attributes ||= inspection_attributes
@@ -20,14 +22,9 @@ module Seamus
       RVideo::Inspector.new(:raw_response => raw_response)
     end
 
-    def raw_response
-      response = ffmpeg_response_process.read
-      ffmpeg_response_process.close
-      return response
-    end
 
-    def ffmpeg_response_process
-      IO.popen("ffmpeg -i '#{self.path}' 2>&1", "r")
+    def raw_response
+      Open3.popen3("ffmpeg -i '#{self.path}' -")[2].read
     end
 
   end
