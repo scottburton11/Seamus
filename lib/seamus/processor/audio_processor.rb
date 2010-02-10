@@ -1,5 +1,5 @@
 module Seamus
-  class AudioProcessor < Processor
+  module AudioProcessor
     
     def thumbnail
       raise ThumbnailError, "invalid type for thumbnail"

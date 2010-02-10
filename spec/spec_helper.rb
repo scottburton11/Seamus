@@ -5,7 +5,8 @@ require 'Seamus'
 require 'spec'
 require 'spec/autorun'
 require 'fakefs/spec_helpers'
+require 'factories'
 
 Spec::Runner.configure do |config|
-  
+  include Factories
 end

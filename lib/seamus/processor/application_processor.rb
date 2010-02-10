@@ -1,5 +1,5 @@
 module Seamus
-  class ApplicationProcessor < Processor
+  module ApplicationProcessor
 
     def thumbnail
       raise ThumbnailError, "invalid type for thumbnail"

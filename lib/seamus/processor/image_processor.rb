@@ -3,19 +3,23 @@ module Seamus
     require 'devil'
     
     def thumbnail
-      tmp = thumb_tempfile
-      Devil.load_image(file.path) do |img|
+      tmp = Tempfile.new(::File.basename(path))
+      # io = IO.new
+      Devil.load_image(path) do |img|
         img.thumbnail(320)
-        img.save("#{file.path}_#{File.basename(file.path)}_thumb.jpg")
+        img.save("#{path}_#{::File.basename(path)}_thumb.jpg")
       end
-      File.open("#{file.path}_#{File.basename(file.path)}_thumb.jpg", "r") do |thumb|
+      ::File.open("#{path}_#{::File.basename(path)}_thumb.jpg", "r") do |thumb|
         tmp.write thumb.read
       end
-      tmp.close
-      File.unlink("#{file.path}_#{File.basename(file.path)}_thumb.jpg")
+       # tmp.close
+       tmp.rewind
+      # io.close
+      ::File.unlink("#{path}_#{::File.basename(path)}_thumb.jpg")
+      # return io
       return tmp
     end
-    
+      
     
   end
 end

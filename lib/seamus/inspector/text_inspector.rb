@@ -1,16 +1,26 @@
 module Seamus
-  class TextInspector < Inspector
+  module TextInspector
     
-    def stats
-      inspection_attributes
+    def words
+      characters.scan(/\S+/)
     end
-
+    
+    def word_count
+      words.size
+    end
+    
+    def lines
+      characters.scan(/.*\n/)
+    end
+    
+    def lines_count
+      lines.size
+    end
+    
     private
-
-    def inspection_attributes
-      attr_hash = {"size" => file_stat.size}
-      return attr_hash
+    
+    def characters
+      @characters ||= ::File.read(self.path)
     end
-
   end
 end

@@ -85,6 +85,7 @@ MimeTable.register "text/UTF-8", :txt
 MimeTable.register "text/x-java-source", :jav
 MimeTable.register "text/x-script.python", :py
 MimeTable.register "text/x-script.sh", :sh
+MimeTable.register "text/x-ruby", :rb
 MimeTable.register "video/mp4", :f4v
 MimeTable.register "video/mp4", :mp4
 MimeTable.register "video/quicktime", :mov
