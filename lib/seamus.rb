@@ -28,29 +28,39 @@ require 'mime_table'
 
 
 ## Seamus - The File Inspector
-# Mix Seamus in to your class and get a hash of #file_attributes appropriate to the file type.
-# Provide an instance of File, or any class that responds to #path, and include Seamus:
-#
-#   class MyClass
+# 
+# Seamus inspects your file and discovers useful attributes. It is at its best with rich 
+# digital media - video, audio and image files - but is suitable for use with any file type.
+# Just provide a path to Seamus::Builder.new for an enhanced File object that knows about your
+# file. 
+# 
+#   movie = Seamus::Builder.new("/path/to/my/movie.mov")
+#   
+#   movie.width
+#   # => 720
+#   
+#   movie.video_codec
+#   # => 'h264'
+# 
+# Or if you prefer, include Seamus in a class and use the has_file :file_attribute class 
+# method for attachments.
+#   
+#   class Upload
 #     include Seamus
-#     attr_accessor :file
-#     
-#     def initialize(path)
-#       @path = File.open(path)
-#     end
+#     has_file :file
 #   end
 #   
-#   my_file = MyClass.new("path/to/file.mov")
-#   my_file.file_attributes
+#   u = Upload.new
+#   u.file = "/path/to/image.jpg"
+#   u.file.width
+#   # => 3284
 #   
-#   # => {"video_codec"=>"h264", "bitrate_units"=>"kb/s", "container"=>"mov,mp4,m4a,3gp,3g2,mj2", "audio_channels_string"=>"stereo", "audio?"=>true, "audio_channels"=>2, "video?"=>true, "audio_sample_rate"=>44100, "bitrate"=>346, "audio_codec"=>"mpeg4aac", "video_colorspace"=>"yuv420p", "height"=>576, "audio_sample_units"=>"Hz", "fps"=>"7.00", "duration"=>84000, "width"=>1024}
-#   
-#
-# Generate thumbnails automatically:
+# Seamus supports thumbnail creation for visual media types. The #thumbnail method returns
+# an IO instance.
 # 
-#   my_file.thumbnail {|thumb| my_open_file_instance.write thumb.read }
+#   u.file.thumbnail
+#   # => #<IO:0x357898>
 #   
-  
 
 module Seamus
 

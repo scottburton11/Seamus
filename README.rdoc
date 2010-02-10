@@ -4,37 +4,53 @@ Seamus is not an Irish monk. Instead, it inspects a file and returns whatever me
 
 == Usage
 
-Mix Seamus in to your class and get a hash of #file_attributes appropriate to the file type.
-Provide an instance of File, or any class that responds to #path, and include Seamus:
+Seamus inspects your file and discovers useful attributes. It is at its best with rich 
+digital media - video, audio and image files - but is suitable for use with any file type.
+Just provide a path to Seamus::Builder.new for an enhanced File object that knows about your
+file. 
 
-  class MyClass
+  movie = Seamus::Builder.new("/path/to/my/movie.mov")
+  
+  movie.width
+  # => 720
+  
+  movie.video_codec
+  # => 'h264'
+
+Or if you prefer, include Seamus in a class and use the has_file :file_attribute class 
+method for attachments.
+  
+  class Upload
     include Seamus
-    attr_accessor :file
-    
-    def initialize(path)
-      @path = File.open(path)
-    end
+    has_file :file
   end
   
-  my_file = MyClass.new("path/to/file.mov")
-  my_file.file_attributes
+  u = Upload.new
+  u.file = "/path/to/image.jpg"
+  u.file.width
+  # => 3284
   
-  # => {"video_codec"=>"h264", "bitrate_units"=>"kb/s", "container"=>"mov,mp4,m4a,3gp,3g2,mj2", "audio_channels_string"=>"stereo", "audio?"=>true, "audio_channels"=>2, "video?"=>true, "audio_sample_rate"=>44100, "bitrate"=>346, "audio_codec"=>"mpeg4aac", "video_colorspace"=>"yuv420p", "height"=>576, "audio_sample_units"=>"Hz", "fps"=>"7.00", "duration"=>84000, "width"=>1024}
+Seamus supports thumbnail creation for visual media types. The #thumbnail method returns
+an IO instance.
+
+  u.file.thumbnail
+  # => #<IO:0x357898>
   
+== Extending Seamus
 
-Generate thumbnails automatically:
+Seamus dynamically generates classes for file types as it encounters them. Seamus::Builder
+will, for example, generate a Seamus::File::Mp4 class and instance when given a path to 
+an MPEG-4 file with .mp4 extension, which subclasses Seamus::File::Video.
 
-  my_file.thumbnail {|thumb| my_open_file_instance.write thumb.read }
-
-Files that probably can't generate thumbnails (audio, PDF, etc.) will raise ThumbnailError.
-
-Video and audio file attributes are inspected using the RVideo gem.
+You can build custom behavior around a file type by defining a class Seamus::File::<extname> 
+that either subclasses File, subclasses one of Seamus::File's template classes, or implements
+a path handler of some kind.
 
 == Note on Patches/Pull Requests
  
-* I'd be very surprised if anyone wanted to do such a thing.
+* I'd be very surprised if anyone wanted to do such a thing. But if you really do, contact me and we'll work something out.
 
 
 == Copyright
 
-Copyright (c) 2009 Scott Burton. See LICENSE for details.
+Copyright (c) 2010 Scott Burton. See LICENSE for details.
