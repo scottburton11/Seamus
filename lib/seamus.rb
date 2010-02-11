@@ -6,13 +6,11 @@ $LOAD_PATH << './lib'
 
 require 'core/numeric'
 require 'seamus/standard_additions'
-require 'seamus/inspector'
 require 'seamus/inspector/video_inspector'
 require 'seamus/inspector/audio_inspector'
 require 'seamus/inspector/image_inspector'
 require 'seamus/inspector/application_inspector'
 require 'seamus/inspector/text_inspector'
-require 'seamus/processor'
 require 'seamus/processor/video_processor'
 require 'seamus/processor/audio_processor'
 require 'seamus/processor/image_processor'
@@ -65,6 +63,9 @@ require 'mime_table'
 module Seamus
 
   module ClassMethods
+  
+    # Creates an accessor for a Seamus-enabled file. has_file :upload would create
+    # an #upload method and a #upload= method.
     def has_file(attribute)
       self.class_eval(%Q(
         def #{attribute.to_s}=(file)

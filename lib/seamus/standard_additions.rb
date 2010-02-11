@@ -1,5 +1,7 @@
 module Seamus
   module StandardAdditions
+    
+    # Returns a Digest::MD5 instance
     def md5
       @md5 ||= Digest::MD5.file(self.path)
     end
