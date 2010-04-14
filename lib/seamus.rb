@@ -2,7 +2,7 @@ require 'digest/md5'
 require 'open3'
 require 'tempfile'
 
-$LOAD_PATH << './lib'
+$LOAD_PATH << File.join(File.dirname(File.expand_path(__FILE__)), "lib")
 
 require 'core/numeric'
 require 'seamus/standard_additions'
