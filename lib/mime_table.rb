@@ -81,6 +81,10 @@ MimeTable.register "image/vnd.dxf", :dxf
 MimeTable.register "image/x-pcx", :pcx
 MimeTable.register "image/x-pict", :pct
 MimeTable.register "image/x-quicktime", :qif
+MimeTable.register "image/x-nikon-nef", :nef
+MimeTable.register "image/raw", :raw
+MimeTable.register "image/x-dcraw", :cr2
+MimeTable.register "image/x-adobe-dng", :dng
 MimeTable.register "text/UTF-8", :txt
 MimeTable.register "text/x-java-source", :jav
 MimeTable.register "text/x-script.python", :py
