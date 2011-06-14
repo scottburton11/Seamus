@@ -4,8 +4,8 @@ module Seamus
     extend self
     def new(file)
       path = file.is_a?(File) ? Pathname.new(file.path) : Pathname.new(file)
-      type = file_type(path.extname)
-      extension = path.extname.gsub('.', '')
+      extension = path.extname[/\w+$/]
+      type = file_type(extension)
       build_class(type, extension).new(path.to_s)
     end
 
