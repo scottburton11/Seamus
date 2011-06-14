@@ -75,7 +75,7 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb"
   ]
   s.add_dependency("rvideo")
-  s.add_dependency("dev")
+  s.add_dependency("devil")
   
 
   if s.respond_to? :specification_version then
