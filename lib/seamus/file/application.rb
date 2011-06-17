@@ -8,6 +8,11 @@ module Seamus
         super(*args, &block)
         # create_methods_for inspector
       end
+      
+      def inspection_attributes
+        @inspection_attributes ||= [] + standard_attributes
+      end
+      
     end
   end
 end

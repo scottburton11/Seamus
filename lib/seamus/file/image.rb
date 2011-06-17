@@ -8,6 +8,11 @@ module Seamus
         super(*args, &block)
         create_methods_for inspector, :except => ["thumbnail", "thumbnail2"]
       end
+      
+      def inspection_attributes
+        @inspection_attributes ||= [:width, :height] + standard_attributes
+      end
+      
     end
   end
 end

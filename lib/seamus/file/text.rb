@@ -9,5 +9,10 @@ module Seamus
         # create_methods_for inspector
       end
     end
+    
+    def inspection_attributes
+      @inspection_attributes ||= [:words, :word_count, :lines, :line_count] + standard_attributes
+    end
+    
   end
 end

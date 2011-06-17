@@ -22,6 +22,23 @@ module Seamus
        MimeTable.lookup_by_extension(extension).to_s
     end
     
+    def add_inspection_attributes(*args)
+      args.select{|arg| arg.respond_to?(:to_sym) }.each do |arg|
+        inspection_attributes.push arg
+      end
+    end
+
+    def [](attribute)
+      attributes[attribute.to_sym]
+    end
+
+    def attributes
+      @attributes ||= inspection_attributes.inject({}) do |h, i|
+        h[i] = self.send(i) if self.respond_to?(i)
+        h
+      end
+    end
+
     private
     
     def create_method(method, method_binding)
@@ -29,10 +46,14 @@ module Seamus
     end
 
     def create_methods_for(object, options={})
-      options[:except] = options[:except].to_a unless options[:except].is_a?(Array)
+      options[:except] = [options[:except]] unless options[:except].is_a?(Array)
       object.public_methods(false).each do |method|
         create_method(method, lambda {object.method(method.to_s).call}) unless options[:except].include?(method)
       end
+    end
+    
+    def standard_attributes
+      [:size, :md5]
     end
 
     # def method_missing(method, *args, &block)
